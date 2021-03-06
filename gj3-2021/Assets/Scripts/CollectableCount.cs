@@ -4,7 +4,7 @@ using TMPro;
 [RequireComponent(typeof(TextMeshProUGUI))]
 public class CollectableCount : MonoBehaviour
 {
-    private int total = 0;
+    public int Total { get; private set; } = 0;
     private TextMeshProUGUI textMeshPro = null;
 
     void Start()
@@ -14,9 +14,14 @@ public class CollectableCount : MonoBehaviour
 
     public static CollectableCount operator ++(CollectableCount count)
     {
-        count.total++;
-        count.textMeshPro.text = count.total.ToString();
+        count.Total++;
+        count.textMeshPro.text = count.Total.ToString();
         return count;
     }
 
+    public void Clear()
+    {
+        Total = 0;
+        textMeshPro.text = Total.ToString();
+    }
 }
