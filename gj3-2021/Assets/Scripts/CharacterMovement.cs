@@ -14,13 +14,11 @@ public class CharacterMovement : MonoBehaviour
     public CharacterBumper leftBumper;
     public CharacterBumper rightBumper;
 
-    // Start is called before the first frame update
     void Start()
     {
         facingRight = true;
     }
 
-    // Update is called once per frame
     void Update()
     {
         onGround = fd.OnGround();
