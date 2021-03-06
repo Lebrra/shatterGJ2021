@@ -31,8 +31,16 @@ public class CharacterMovement : MonoBehaviour
                 if (facingRight) transform.position = Vector2.MoveTowards(transform.position, new Vector2(100, transform.position.y), moveSpeed * Time.deltaTime);
                 else transform.position = Vector2.MoveTowards(transform.position, new Vector2(-100, transform.position.y), moveSpeed * Time.deltaTime);
 
-                if (leftBumper.overlapped && !facingRight) facingRight = true;
-                else if (rightBumper.overlapped && facingRight) facingRight = false;
+                if (leftBumper.overlapped && !facingRight)
+                {
+                    facingRight = true;
+                    GetComponent<SpriteRenderer>().flipX = false;
+                }
+                else if (rightBumper.overlapped && facingRight)
+                {
+                    facingRight = false;
+                    GetComponent<SpriteRenderer>().flipX = true;
+                }
             }
         }
     }
