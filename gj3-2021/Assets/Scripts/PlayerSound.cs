@@ -25,6 +25,6 @@ public class PlayerSound : MonoBehaviour
 
     public void PlayFall()
     {
-        audioSource.PlayOneShot(shocks[Random.Range(0, falls.Length)]);
+        audioSource.PlayOneShot(falls[Random.Range(0, falls.Length)]);
     }
 }
