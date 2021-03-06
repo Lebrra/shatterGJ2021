@@ -48,11 +48,14 @@ public class LevelManager : MonoBehaviour
         GameData data = SaveSystem.LoadGame();
         int levelIndex = GameManager.instance.currLevelIndex;
 
-        data.levels[levelIndex].collectibleCount = collectableCounter.Total;
+        if (collectableCounter.Total > data.levels[levelIndex].collectibleCount)
+            data.levels[levelIndex].collectibleCount = collectableCounter.Total;
 
         if (success)
         {
-            data.levels[levelIndex].finishTime = gameTime;
+            if(gameTime < data.levels[levelIndex].finishTime)
+                data.levels[levelIndex].finishTime = gameTime;
+            
             endTxt.text = "Level Complete!";
             
             if (data.levels.Length > levelIndex + 1)
@@ -78,12 +81,12 @@ public class LevelManager : MonoBehaviour
 
     public void NextLevel()
     {
-        GameManager.instance.LoadLevel(GameManager.instance.currLevelIndex + 1);
+        GameManager.instance.LoadLevel(GameManager.instance.currLevelIndex + 2);
     }
 
     public void RetryLevel()
     {
-        GameManager.instance.LoadLevel(GameManager.instance.currLevelIndex);
+        GameManager.instance.LoadLevel(GameManager.instance.currLevelIndex + 1);
     }
 
     public void MainMenu()
