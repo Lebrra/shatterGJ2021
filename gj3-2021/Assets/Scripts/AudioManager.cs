@@ -4,14 +4,27 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
+    public static AudioManager inst;
+
     public List<AudioClip> songList;
     public List<AudioClip> staticList;
     public AudioSource songSource;
     public AudioSource sfxSource;
     private float startVol;
 
+    private void Awake()
+    {
+        if (inst != null)
+        {
+            Destroy(this);
+        }
+        else
+            inst = this;
+    }
+
     void Start()
     {
+        inst = this;
         //aSource = GetComponent<AudioSource>();
         startVol = songSource.volume;
         songSource.clip = songList[1];
