@@ -5,32 +5,28 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     public List<AudioClip> songList;
-    private AudioSource aSource;
+    public List<AudioClip> staticList;
+    public AudioSource songSource;
+    public AudioSource sfxSource;
     private float startVol;
 
-    // Start is called before the first frame update
     void Start()
     {
-        aSource = GetComponent<AudioSource>();
-        startVol = aSource.volume;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-            StartCoroutine(FadeSongOut(1f, 0, 0));
+        //aSource = GetComponent<AudioSource>();
+        startVol = songSource.volume;
+        songSource.clip = songList[1];
+        songSource.Play();
     }
 
     public IEnumerator FadeSongOut(float duration, float targetVolume, int song)
     {
         float currentTime = 0;
-        float start = aSource.volume;
+        float start = songSource.volume;
 
         while (currentTime < duration)
         {
             currentTime += Time.deltaTime;
-            aSource.volume = Mathf.Lerp(start, targetVolume, currentTime / duration);
+            songSource.volume = Mathf.Lerp(start, targetVolume, currentTime / duration);
             yield return null;
         }
         StartCoroutine(FadeSongIn(1f, start, song));
@@ -40,13 +36,14 @@ public class AudioManager : MonoBehaviour
     public IEnumerator FadeSongIn(float duration, float targetVolume, int song)
     {
         float currentTime = 0;
-        float start = aSource.volume;
-        aSource.clip = songList[song];
+        float start = songSource.volume;
+        songSource.clip = songList[song];
+        songSource.Play();
 
         while (currentTime < duration)
         {
             currentTime += Time.deltaTime;
-            aSource.volume = Mathf.Lerp(start, targetVolume, currentTime / duration);
+            songSource.volume = Mathf.Lerp(start, targetVolume, currentTime / duration);
             yield return null;
         }
         yield break;
@@ -54,6 +51,34 @@ public class AudioManager : MonoBehaviour
 
     public void PlaySlowSong()
     {
+        StartCoroutine(FadeSongOut(1f, 0, 0));
+    }
 
+    public void PlayNormalSong()
+    {
+        StartCoroutine(FadeSongOut(1f, 0, 1));
+    }
+
+    public void PlayFastSong()
+    {
+        StartCoroutine(FadeSongOut(1f, 0, 2));
+    }
+
+    public void HighStatic()
+    {
+        sfxSource.clip = staticList[0];
+        sfxSource.Play();
+    }
+
+    public void MediumStatic()
+    {
+        sfxSource.clip = staticList[1];
+        sfxSource.Play();
+    }
+
+    public void LowStatic()
+    {
+        sfxSource.clip = staticList[2];
+        sfxSource.Play();
     }
 }
