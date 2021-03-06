@@ -35,13 +35,14 @@ public static class SaveSystem
     }
 }
 
+[System.Serializable]
 public class GameData
 {
     public LevelData[] levels;
 
-    public GameData()
+    public GameData(int levelCount)
     {
-        levels = new LevelData[3];  //update this
+        levels = new LevelData[levelCount];  //update this
         for(int i = 0; i < levels.Length; i++)
         {
             levels[i] = new LevelData();
@@ -50,6 +51,7 @@ public class GameData
     }
 }
 
+[System.Serializable]
 public class LevelData
 {
     public bool unlocked;
