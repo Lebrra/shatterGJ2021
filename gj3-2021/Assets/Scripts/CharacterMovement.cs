@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CharacterMovement : MonoBehaviour
 {
+    public bool canMove = true; //maybe delay this?
+
     public float moveSpeed;
     public bool facingRight = true;
 
@@ -21,14 +23,22 @@ public class CharacterMovement : MonoBehaviour
 
     void Update()
     {
-        onGround = fd.OnGround();
-        if (onGround)
+        if (canMove)
         {
-            if (facingRight) transform.position = Vector2.MoveTowards(transform.position, new Vector2(100, transform.position.y), moveSpeed * Time.deltaTime);
-            else transform.position = Vector2.MoveTowards(transform.position, new Vector2(-100, transform.position.y), moveSpeed * Time.deltaTime);
+            onGround = fd.OnGround();
+            if (onGround)
+            {
+                if (facingRight) transform.position = Vector2.MoveTowards(transform.position, new Vector2(100, transform.position.y), moveSpeed * Time.deltaTime);
+                else transform.position = Vector2.MoveTowards(transform.position, new Vector2(-100, transform.position.y), moveSpeed * Time.deltaTime);
 
-            if (leftBumper.overlapped && !facingRight) facingRight = true;
-            else if (rightBumper.overlapped && facingRight) facingRight = false;
+                if (leftBumper.overlapped && !facingRight) facingRight = true;
+                else if (rightBumper.overlapped && facingRight) facingRight = false;
+            }
         }
+    }
+
+    public void stopMovement()
+    {
+        if (canMove) canMove = false;
     }
 }
