@@ -2341,6 +2341,10 @@ PrefabInstance:
       propertyPath: count
       value: 
       objectReference: {fileID: 1911461081}
+    - target: {fileID: 4906164892654147643, guid: b50aed312e241483bb9c06c3c85aaffe, type: 3}
+      propertyPath: collectableCount
+      value: 
+      objectReference: {fileID: 1911461081}
     - target: {fileID: 5404212551042266708, guid: b50aed312e241483bb9c06c3c85aaffe, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.21
@@ -2825,11 +2829,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2409735126984925044, guid: 2f0c11880bbfa4e76a58ac207d73940b, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -723
+      value: -310
       objectReference: {fileID: 0}
     - target: {fileID: 2409735126984925044, guid: 2f0c11880bbfa4e76a58ac207d73940b, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 1423
+      value: -305
       objectReference: {fileID: 0}
     - target: {fileID: 2409735126984925044, guid: 2f0c11880bbfa4e76a58ac207d73940b, type: 3}
       propertyPath: m_SizeDelta.x
@@ -2841,19 +2845,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2409735126984925044, guid: 2f0c11880bbfa4e76a58ac207d73940b, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2409735126984925044, guid: 2f0c11880bbfa4e76a58ac207d73940b, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2409735126984925044, guid: 2f0c11880bbfa4e76a58ac207d73940b, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2409735126984925044, guid: 2f0c11880bbfa4e76a58ac207d73940b, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2409735126984925044, guid: 2f0c11880bbfa4e76a58ac207d73940b, type: 3}
       propertyPath: m_Pivot.x
@@ -2878,6 +2882,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4906164892654147643, guid: b50aed312e241483bb9c06c3c85aaffe, type: 3}
       propertyPath: count
+      value: 
+      objectReference: {fileID: 1911461081}
+    - target: {fileID: 4906164892654147643, guid: b50aed312e241483bb9c06c3c85aaffe, type: 3}
+      propertyPath: collectableCount
       value: 
       objectReference: {fileID: 1911461081}
     - target: {fileID: 5404212551042266708, guid: b50aed312e241483bb9c06c3c85aaffe, type: 3}
