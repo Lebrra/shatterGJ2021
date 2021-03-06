@@ -4,18 +4,20 @@ using UnityEngine;
 
 public class WorldChanger : MonoBehaviour
 {
+    public int startIndex;
     public int worldIndex;
 
-    public List<GameObject> world1Objects;
-    public List<GameObject> world2Objects;
-    public List<GameObject> world3Objects;
+    public List<GameObject> blueWorldObjects;
+    public List<GameObject> redWorldObjects;
+    public List<GameObject> greenWorldObjects;
 
     //this can change to backgrounds sprites later
     public Color[] worldColors;
 
     private void Start()
     {
-        setWorld(0);
+        GetComponent<UnityEngine.UI.Slider>().value = startIndex;
+        //setWorld(0);
     }
 
     public void setWorld(float value)
@@ -38,15 +40,15 @@ public class WorldChanger : MonoBehaviour
         switch (index)
         {
             case 0:
-                foreach (GameObject go in world1Objects) go.SetActive(enabled);
+                foreach (GameObject go in blueWorldObjects) go.SetActive(enabled);
                 break;
 
             case 1:
-                foreach (GameObject go in world2Objects) go.SetActive(enabled);
+                foreach (GameObject go in redWorldObjects) go.SetActive(enabled);
                 break;
 
             case 2:
-                foreach (GameObject go in world3Objects) go.SetActive(enabled);
+                foreach (GameObject go in greenWorldObjects) go.SetActive(enabled);
                 break;
 
             default: return;

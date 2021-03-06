@@ -16,7 +16,8 @@ public class MainLoader : MonoBehaviour
         if (data == null)
         {
             Debug.Log("Creating new save data...");
-            data = new GameData();
+            data = new GameData(levelBtns.Length);
+            SaveSystem.SaveGame(data);
         }
         else
         {
@@ -26,12 +27,25 @@ public class MainLoader : MonoBehaviour
         LoadLevelButtons(data);
     }
 
+    private void Update()
+    {
+        //temp data reset
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            Debug.Log("reset gamedata, reloading...");
+            SaveSystem.SaveGame(new GameData(levelBtns.Length));
+            GameManager.instance.BackToMain();
+        }
+    }
+
     public void LoadLevelButtons(GameData data)
     {
         for (int i = 0; i < levelBtns.Length; i++)
         {
             if (data.levels[i].unlocked)
             {
+                Debug.Log("level " + i + " unlocked");
+
                 levelBtns[i].interactable = true;
                 if (data.levels[i].finishTime > 0)
                 {
@@ -60,6 +74,6 @@ public class MainLoader : MonoBehaviour
 
     public void LoadLevel(int level)
     {
-        SceneManager.LoadScene(level);
+        GameManager.instance.LoadLevel(level);
     }
 }

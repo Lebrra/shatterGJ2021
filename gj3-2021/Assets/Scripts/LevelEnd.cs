@@ -11,6 +11,7 @@ public class LevelEnd : MonoBehaviour
             //end level
             Debug.Log("Level Complete!");
             collision.GetComponent<CharacterMovement>().stopMovement();
+            LevelManager.inst.EndLevel(true);
         }
     }
 }

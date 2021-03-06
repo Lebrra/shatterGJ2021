@@ -1,26 +1,40 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+    public int currLevelIndex = -1;
+
     public Color[] gradeColors;
 
-    void Start()
+    void Awake()
     {
+        if (instance) Destroy(this);
+        else instance = this;
 
+        DontDestroyOnLoad(gameObject);
     }
 
-    void Update()
+    public void LoadLevel(int level)
     {
-        
+        currLevelIndex = level - 1;
+        SceneManager.LoadScene(level);
+    }
+
+    public void BackToMain()
+    {
+        SceneManager.LoadScene(0);
     }
 
     public char levelGrade(float time, int collectibles)
     {
-        return 'F';
+        if (time == float.MaxValue) return 'F';
+
+        return 'C';
     }
 
     public Color gradeToColor(char grade)
