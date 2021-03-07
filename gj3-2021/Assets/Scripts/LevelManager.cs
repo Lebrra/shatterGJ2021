@@ -51,17 +51,14 @@ public class LevelManager : MonoBehaviour
         int levelIndex = GameManager.instance.currLevelIndex;
 
         collectTxt.text = collectableCounter.Total.ToString();
-        if (collectableCounter.Total > data.levels[levelIndex].collectibleCount)
-            data.levels[levelIndex].collectibleCount = collectableCounter.Total;
 
         float endTime = Mathf.Round(gameTime * 100F) / 100F;
         timeTxt.text = endTime.ToString() + "s";
 
+        char grade;
+
         if (success)
         {
-            if(gameTime < data.levels[levelIndex].finishTime || data.levels[levelIndex].finishTime < 0)
-                data.levels[levelIndex].finishTime = endTime;
-            
             endTxt.text = "Level Complete!";
             
             if (data.levels.Length > levelIndex + 1)
@@ -70,19 +67,27 @@ public class LevelManager : MonoBehaviour
                 Debug.Log("next level unlocked");
             }
             else nextButton.SetActive(false);
+
+            grade = GameManager.instance.levelGrade(gameTime, collectableCounter.Total);
+            if(CompareGrade(data.levels[levelIndex].grade, grade))
+            {
+                // new grade is better, save data
+                data.levels[levelIndex].collectibleCount = collectableCounter.Total;
+                data.levels[levelIndex].finishTime = endTime;
+                data.levels[levelIndex].grade = grade;
+
+                SaveSystem.SaveGame(data);
+            }
         }
         else
         {
-            data.levels[levelIndex].finishTime = float.MaxValue;
+            grade = 'F';
             endTxt.text = "Level Failed!";
             nextButton.SetActive(false);
         }
 
-        char grade = GameManager.instance.levelGrade(gameTime, collectableCounter.Total);
         gradeTxt.text = grade.ToString();
         gradeTxt.color = GameManager.instance.gradeToColor(grade);
-
-        SaveSystem.SaveGame(data);
     }
 
     public void NextLevel()
@@ -98,5 +103,24 @@ public class LevelManager : MonoBehaviour
     public void MainMenu()
     {
         GameManager.instance.BackToMain();
+    }
+
+    bool CompareGrade(char initial, char update)
+    {
+        switch (update)
+        {
+            case 'F': return false;
+            case 'C':
+                if (initial == 'S' || initial == 'A' || initial == 'B') return false;
+                else return true;
+
+            case 'B':
+                if (initial == 'S' || initial == 'A') return false;
+                else return true;
+            case 'A':
+                if (initial == 'S') return false;
+                else return true;
+            default: return true;
+        }
     }
 }

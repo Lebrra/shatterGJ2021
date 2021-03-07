@@ -57,11 +57,13 @@ public class LevelData
     public bool unlocked;
     public int collectibleCount;
     public float finishTime;
+    public char grade;
 
     public LevelData()
     {
         unlocked = false;
         collectibleCount = 0;
         finishTime = -1;
+        grade = '-';
     }
 }

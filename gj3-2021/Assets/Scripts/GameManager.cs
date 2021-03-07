@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
         switch (grade)
         {
             default:
-                return Color.white;
+                return new Color(152, 152, 152);
 
             case 'S':
                 return gradeColors[0];

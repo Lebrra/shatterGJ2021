@@ -48,13 +48,10 @@ public class MainLoader : MonoBehaviour
                 Debug.Log("level " + i + " unlocked");
 
                 levelBtns[i].interactable = true;
-                if (data.levels[i].finishTime > 0)
-                {
-                    TextMeshProUGUI letterTxt = levelBtns[i].transform.GetChild(1).GetComponent<TextMeshProUGUI>();
-                    char grade = GameManager.instance.levelGrade(data.levels[i].finishTime, data.levels[i].collectibleCount);
-                    letterTxt.text = grade.ToString();
-                    letterTxt.color = GameManager.instance.gradeToColor(grade);
-                }
+
+                TextMeshProUGUI letterTxt = levelBtns[i].transform.GetChild(1).GetComponent<TextMeshProUGUI>();
+                letterTxt.text = data.levels[i].grade.ToString();
+                letterTxt.color = GameManager.instance.gradeToColor(data.levels[i].grade);
             }
             else
             {
