@@ -11,7 +11,7 @@ public class AudioManager : MonoBehaviour
     public AudioSource songSource;
     public AudioSource sfxSource;
     private float startVol;
-    public int currSong;
+    public int currSong = 1;
 
     private void Awake()
     {
@@ -31,6 +31,7 @@ public class AudioManager : MonoBehaviour
         //aSource = GetComponent<AudioSource>();
         startVol = songSource.volume;
         songSource.clip = songList[1];
+        currSong = 1;
         songSource.Play();
     }
 

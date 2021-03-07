@@ -24,6 +24,15 @@ public class SpeedSlider : MonoBehaviour, IPointerUpHandler
     void Start()
     {
         slider = GetComponent<Slider>();
+
+        slider.value = (float)AudioManager.inst?.currSong;
+        updateSprite(slider.value);
+        ChangeSpeed((int)slider.value);
+
+        Quaternion thing = new Quaternion();
+        thing.eulerAngles = new Vector3(0, 0, getDirection((int)slider.value));
+        speedGadge.transform.rotation = thing;
+
         prevValue = (int)slider.value;
     }
 
@@ -115,27 +124,43 @@ public class SpeedSlider : MonoBehaviour, IPointerUpHandler
             case 0:
                 AudioManager.inst?.PlaySlowSong();
                 Debug.Log("playing slow song");
-                
-                character.moveSpeed = 0.7F;
-                character.GetComponent<Animator>().speed = 1.05F;
-
+               
                 break;
             case 1:
                 AudioManager.inst?.PlayNormalSong();
                 Debug.Log("playing normal song");
                 
-                character.moveSpeed = 1.2F;
-                character.GetComponent<Animator>().speed = 1.2F;
-
                 break;
             case 2:
                 AudioManager.inst?.PlayFastSong();
                 Debug.Log("playing fast song");
                 
+                break;
+            default: return;
+        }
+
+        ChangeSpeed(index);
+    }
+
+    void ChangeSpeed(int index)
+    {
+        switch (index)
+        {
+            case 0:
+                character.moveSpeed = 0.7F;
+                character.GetComponent<Animator>().speed = 1.05F;
+                break;
+
+            case 1:
+                character.moveSpeed = 1.2F;
+                character.GetComponent<Animator>().speed = 1.2F;
+                break;
+
+            case 2:
                 character.moveSpeed = 2F;
                 character.GetComponent<Animator>().speed = 1.8F;
-
                 break;
+
             default: return;
         }
     }
