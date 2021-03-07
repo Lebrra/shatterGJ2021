@@ -14,6 +14,9 @@ public class LevelManager : MonoBehaviour
     bool counting = false;
     public float gameTime = 0;
 
+    public bool paused = false;
+    public GameObject pauseScreen;
+
     [Header("End Screen")]
     public GameObject endPanel;
     public TextMeshProUGUI endTxt;
@@ -28,11 +31,25 @@ public class LevelManager : MonoBehaviour
 
         player.canMove = false;
         Invoke("StartPlayer", startDelay);
+
+        Time.timeScale = 1;
     }
 
     void Update()
     {
         if (counting) gameTime += Time.deltaTime;
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            paused = !paused;
+            PauseGame(paused);
+        }
+    }
+
+    public void PauseGame(bool pause)
+    {
+        if (pause) Time.timeScale = 0;
+        else Time.timeScale = 1;
+        pauseScreen.SetActive(pause);
     }
 
     public void StartPlayer()

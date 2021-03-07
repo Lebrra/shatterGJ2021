@@ -13,6 +13,8 @@ public class MainLoader : MonoBehaviour
 
     void Start()
     {
+        Time.timeScale = 1;
+
         GameData data = SaveSystem.LoadGame();
         if (data == null)
         {
