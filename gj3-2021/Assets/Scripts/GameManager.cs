@@ -30,23 +30,25 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
-    public char levelGrade(float time, int collectibles)
+    public char levelGrade(float time, float sTime, int collectibles)
     {
+        float aTime = sTime * 1.3F;
+
         if (time == float.MaxValue) return 'F';
 
         if(collectibles == 3)
         {
-            if (time < 15F) return 'S';
-            else if (time < 20F) return 'A';
+            if (time < sTime) return 'S';
+            else if (time < aTime) return 'A';
             else return 'B';
         }
         else if(collectibles == 2)
         {
-            if (time < 15F) return 'A';
+            if (time < sTime) return 'A';
             else return 'B';
         }
 
-        if (time < 15F) return 'B';
+        if (time < sTime) return 'B';
         else return 'C';
     }
 

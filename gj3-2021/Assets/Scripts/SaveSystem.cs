@@ -46,6 +46,7 @@ public class GameData
         for(int i = 0; i < levels.Length; i++)
         {
             levels[i] = new LevelData();
+            levels[i].sGradeTime = 17F;
         }
         levels[0].unlocked = true;
     }
@@ -57,6 +58,7 @@ public class LevelData
     public bool unlocked;
     public int collectibleCount;
     public float finishTime;
+    public float sGradeTime;
     public char grade;
 
     public LevelData()

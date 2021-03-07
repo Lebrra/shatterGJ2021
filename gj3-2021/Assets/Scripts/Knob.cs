@@ -184,6 +184,7 @@ public class Knob : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         Debug.Log("knob disabled");
         line.GetComponent<Animator>().enabled = false;
+        GetComponent<UnityEngine.UI.Image>().color = new Color32(150, 150, 150, 255);
 
         yield return new WaitForSeconds(0.5F);
         GetComponent<WorldChanger>().setWorld(value);
@@ -192,6 +193,7 @@ public class Knob : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         yield return new WaitForSeconds(0.5F);
         line.GetComponent<Animator>().enabled = true;
         line.GetComponent<Animator>().SetTrigger(value.ToString());
+        GetComponent<UnityEngine.UI.Image>().color = Color.white;
 
         functionEnable = true;
         Debug.Log("knob enabled");

@@ -85,7 +85,7 @@ public class LevelManager : MonoBehaviour
             }
             else nextButton.SetActive(false);
 
-            grade = GameManager.instance.levelGrade(gameTime, collectableCounter.Total);
+            grade = GameManager.instance.levelGrade(gameTime, data.levels[levelIndex].sGradeTime, collectableCounter.Total);
             if(CompareGrade(data.levels[levelIndex].grade, grade))
             {
                 // new grade is better, save data
