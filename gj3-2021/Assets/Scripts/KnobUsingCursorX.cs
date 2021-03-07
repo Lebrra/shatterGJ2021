@@ -51,6 +51,6 @@ public class KnobUsingCursorX : MonoBehaviour, IBeginDragHandler, IDragHandler, 
             deltaAngle = Mathf.DeltaAngle(transform.eulerAngles.z, target);
         }
 
-        transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z);
+        transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, target);
     }
 }
