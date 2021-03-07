@@ -4,9 +4,8 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Slider))]
 public class PhaseSlider : MonoBehaviour
 {
-    [SerializeField] Material phaseMaterial = null;
-    [SerializeField] float inTuneFrequency = 0.5f;
-    [SerializeField] float range = 0.2f;
+    [SerializeField] private Material phaseMaterial = null;
+    [SerializeField] private string propertyName = null; 
     private Slider slider;
 
     void Start()
@@ -17,8 +16,7 @@ public class PhaseSlider : MonoBehaviour
     }
 
     public void ValueChangeCheck()
-    {
-        float solidity = Mathf.Clamp01(1 - Mathf.Abs(inTuneFrequency - slider.value) / range);
-        phaseMaterial.SetFloat("_Solidity", solidity);
+    {   
+        phaseMaterial.SetFloat(propertyName, slider.value);
     }
 }
