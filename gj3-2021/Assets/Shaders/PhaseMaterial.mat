@@ -56,8 +56,8 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - BluePhase: 0.4483836
-    - GreenPhase: 0.5
+    - BluePhase: 0.58
+    - GreenPhase: 0.784
     - RedPhase: 0.5323252
     - _BumpScale: 1
     - _Cutoff: 0.5
