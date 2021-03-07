@@ -35,7 +35,7 @@ public class LevelManager : MonoBehaviour
 
     public void StartPlayer()
     {
-        player.canMove = true;
+        player.startMovement();
         counting = true;
     }
 
@@ -53,7 +53,7 @@ public class LevelManager : MonoBehaviour
 
         if (success)
         {
-            if(gameTime < data.levels[levelIndex].finishTime)
+            if(gameTime < data.levels[levelIndex].finishTime || data.levels[levelIndex].finishTime < 0)
                 data.levels[levelIndex].finishTime = gameTime;
             
             endTxt.text = "Level Complete!";

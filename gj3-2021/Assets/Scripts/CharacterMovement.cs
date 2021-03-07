@@ -47,6 +47,19 @@ public class CharacterMovement : MonoBehaviour
 
     public void stopMovement()
     {
-        if (canMove) canMove = false;
+        if (canMove)
+        {
+            canMove = false;
+            GetComponent<Animator>().SetBool("moving", false);
+        }
+    }
+
+    public void startMovement()
+    {
+        if (!canMove)
+        {
+            canMove = true;
+            GetComponent<Animator>().SetBool("moving", true);
+        }
     }
 }
