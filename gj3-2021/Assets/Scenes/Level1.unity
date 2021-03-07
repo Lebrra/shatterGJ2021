@@ -1428,6 +1428,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 233409629}
     m_Modifications:
+    - target: {fileID: 3105482541837309034, guid: b50aed312e241483bb9c06c3c85aaffe, type: 3}
+      propertyPath: m_ShapeTexture
+      value: 
+      objectReference: {fileID: 2800000, guid: 99e77be0be2ca7b408bab81a8d9f27e6, type: 3}
     - target: {fileID: 4906164892654147643, guid: b50aed312e241483bb9c06c3c85aaffe, type: 3}
       propertyPath: count
       value: 
@@ -1882,6 +1886,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 233409629}
     m_Modifications:
+    - target: {fileID: 3105482541837309034, guid: b50aed312e241483bb9c06c3c85aaffe, type: 3}
+      propertyPath: m_ShapeTexture
+      value: 
+      objectReference: {fileID: 2800000, guid: 99e77be0be2ca7b408bab81a8d9f27e6, type: 3}
     - target: {fileID: 4906164892654147643, guid: b50aed312e241483bb9c06c3c85aaffe, type: 3}
       propertyPath: count
       value: 
@@ -2317,6 +2325,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 233409629}
     m_Modifications:
+    - target: {fileID: 3105482541837309034, guid: b50aed312e241483bb9c06c3c85aaffe, type: 3}
+      propertyPath: m_ShapeTexture
+      value: 
+      objectReference: {fileID: 2800000, guid: 99e77be0be2ca7b408bab81a8d9f27e6, type: 3}
     - target: {fileID: 4906164892654147643, guid: b50aed312e241483bb9c06c3c85aaffe, type: 3}
       propertyPath: count
       value: 
