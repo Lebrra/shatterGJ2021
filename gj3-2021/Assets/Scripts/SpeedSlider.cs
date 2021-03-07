@@ -8,6 +8,8 @@ public class SpeedSlider : MonoBehaviour, IPointerUpHandler
 {
     public bool interactable = true;
 
+    public CharacterMovement character;
+
     public Sprite[] handleSprites;
     public Image handle;
 
@@ -113,14 +115,26 @@ public class SpeedSlider : MonoBehaviour, IPointerUpHandler
             case 0:
                 AudioManager.inst?.PlaySlowSong();
                 Debug.Log("playing slow song");
+                
+                character.moveSpeed = 0.7F;
+                character.GetComponent<Animator>().speed = 1.05F;
+
                 break;
             case 1:
                 AudioManager.inst?.PlayNormalSong();
                 Debug.Log("playing normal song");
+                
+                character.moveSpeed = 1.2F;
+                character.GetComponent<Animator>().speed = 1.2F;
+
                 break;
             case 2:
                 AudioManager.inst?.PlayFastSong();
                 Debug.Log("playing fast song");
+                
+                character.moveSpeed = 2F;
+                character.GetComponent<Animator>().speed = 1.8F;
+
                 break;
             default: return;
         }
