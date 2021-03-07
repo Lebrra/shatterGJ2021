@@ -6,6 +6,7 @@ using TMPro;
 public class MainLoader : MonoBehaviour
 {
     public GameObject levelsPanel;
+    public GameObject mainPanel;
 
     [Header("LevelButtons")]
     public Button[] levelBtns;
@@ -70,6 +71,7 @@ public class MainLoader : MonoBehaviour
     public void EnableLevelSelect(bool enable)
     {
         levelsPanel.SetActive(enable);
+        mainPanel.SetActive(!enable);
     }
 
     public void LoadLevel(int level)

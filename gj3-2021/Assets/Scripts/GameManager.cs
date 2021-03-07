@@ -34,7 +34,20 @@ public class GameManager : MonoBehaviour
     {
         if (time == float.MaxValue) return 'F';
 
-        return 'C';
+        if(collectibles == 3)
+        {
+            if (time < 15F) return 'S';
+            else if (time < 20F) return 'A';
+            else return 'B';
+        }
+        else if(collectibles == 2)
+        {
+            if (time < 15F) return 'A';
+            else return 'B';
+        }
+
+        if (time < 15F) return 'B';
+        else return 'C';
     }
 
     public Color gradeToColor(char grade)
@@ -45,19 +58,19 @@ public class GameManager : MonoBehaviour
                 return Color.white;
 
             case 'S':
-                return Color.yellow;
+                return gradeColors[0];
 
             case 'A':
-                return Color.green;
+                return gradeColors[1];
 
             case 'B':
-                return Color.cyan;
+                return gradeColors[2];
 
             case 'C':
-                return Color.blue;
+                return gradeColors[3];
 
             case 'F':
-                return Color.red;
+                return gradeColors[4];
         }
     }
 }
