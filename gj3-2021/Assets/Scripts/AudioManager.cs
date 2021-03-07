@@ -11,6 +11,7 @@ public class AudioManager : MonoBehaviour
     public AudioSource songSource;
     public AudioSource sfxSource;
     private float startVol;
+    public int currSong;
 
     private void Awake()
     {
@@ -20,6 +21,8 @@ public class AudioManager : MonoBehaviour
         }
         else
             inst = this;
+
+        DontDestroyOnLoad(gameObject);
     }
 
     void Start()
@@ -65,16 +68,19 @@ public class AudioManager : MonoBehaviour
     public void PlaySlowSong()
     {
         StartCoroutine(FadeSongOut(1f, 0, 0));
+        currSong = 0;
     }
 
     public void PlayNormalSong()
     {
         StartCoroutine(FadeSongOut(1f, 0, 1));
+        currSong = 1;
     }
 
     public void PlayFastSong()
     {
         StartCoroutine(FadeSongOut(1f, 0, 2));
+        currSong = 2;
     }
 
     public void PlayStatic(int num)
