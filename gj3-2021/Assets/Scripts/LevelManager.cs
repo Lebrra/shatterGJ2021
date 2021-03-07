@@ -17,6 +17,8 @@ public class LevelManager : MonoBehaviour
     [Header("End Screen")]
     public GameObject endPanel;
     public TextMeshProUGUI endTxt;
+    public TextMeshProUGUI collectTxt;
+    public TextMeshProUGUI timeTxt;
     public TextMeshProUGUI gradeTxt;
     public GameObject nextButton;
 
@@ -48,13 +50,17 @@ public class LevelManager : MonoBehaviour
         GameData data = SaveSystem.LoadGame();
         int levelIndex = GameManager.instance.currLevelIndex;
 
+        collectTxt.text = collectableCounter.Total.ToString();
         if (collectableCounter.Total > data.levels[levelIndex].collectibleCount)
             data.levels[levelIndex].collectibleCount = collectableCounter.Total;
+
+        float endTime = Mathf.Round(gameTime * 100F) / 100F;
+        timeTxt.text = endTime.ToString() + "s";
 
         if (success)
         {
             if(gameTime < data.levels[levelIndex].finishTime || data.levels[levelIndex].finishTime < 0)
-                data.levels[levelIndex].finishTime = gameTime;
+                data.levels[levelIndex].finishTime = endTime;
             
             endTxt.text = "Level Complete!";
             
