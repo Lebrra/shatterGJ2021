@@ -77,21 +77,24 @@ public class AudioManager : MonoBehaviour
         StartCoroutine(FadeSongOut(1f, 0, 2));
     }
 
-    public void HighStatic()
+    public void PlayStatic(int num)
     {
-        sfxSource.clip = staticList[0];
-        sfxSource.Play();
-    }
-
-    public void MediumStatic()
-    {
-        sfxSource.clip = staticList[1];
-        sfxSource.Play();
-    }
-
-    public void LowStatic()
-    {
-        sfxSource.clip = staticList[2];
-        sfxSource.Play();
+        switch (num)
+        {
+            case 0:
+                sfxSource.clip = staticList[0];
+                sfxSource.Play();
+                return;
+            case 1:
+                sfxSource.clip = staticList[1];
+                sfxSource.Play();
+                return;
+            case 2:
+                sfxSource.clip = staticList[2];
+                sfxSource.Play();
+                return;
+            default:
+                return;
+        }
     }
 }
