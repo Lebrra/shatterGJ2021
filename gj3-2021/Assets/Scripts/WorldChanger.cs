@@ -16,7 +16,8 @@ public class WorldChanger : MonoBehaviour
 
     private void Start()
     {
-        GetComponent<UnityEngine.UI.Slider>().value = startIndex;
+        //GetComponent<UnityEngine.UI.Slider>().value = startIndex;
+        GetComponent<Knob>().setInitialValue(startIndex);
         //setWorld(0);
     }
 

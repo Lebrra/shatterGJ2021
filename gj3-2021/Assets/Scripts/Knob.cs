@@ -5,6 +5,8 @@ using UnityEngine.EventSystems;
 
 public class Knob : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
+    public bool functionEnable = true;
+
     bool hover = false;
 
     public int value = 1;
@@ -15,6 +17,10 @@ public class Knob : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     float initialPos;
     Vector2 dragWidth;
+
+    [Header("Line Things")]
+    public GameObject line;
+    public float[] lineXPos;
 
     private void Start()
     {
@@ -27,37 +33,58 @@ public class Knob : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         TurnKnob(value);
     }
 
+    public void setInitialValue(int val)
+    {
+        value = val;
+        TurnKnob(value);
+        line.GetComponent<Animator>().SetTrigger(value.ToString());
+        GetComponent<WorldChanger>().setWorld(value);
+    }
+
     void Update()
     {
-        if (hover && !clicked)
+        if (functionEnable)
         {
-            if (Input.GetMouseButtonDown(0))
+            if (hover && !clicked)
             {
-                clicked = true;
-                clickedPos = Input.mousePosition;
-                startValue = Mathf.RoundToInt(value);
+                if (Input.GetMouseButtonDown(0))
+                {
+                    clicked = true;
+                    clickedPos = Input.mousePosition;
+                    startValue = Mathf.RoundToInt(value);
+                }
+            }
+
+            if (clicked)
+            {
+                //rotate and fun things
+                //Debug.Log("difference: " + (Input.mousePosition.x - clickedPos.x));
+                int currentValue = currentDragValue(startValue);
+                TurnKnob(currentValue);
+
+
+                if (Input.GetMouseButtonUp(0))
+                {
+                    //Debug.Log("initial pos: " + clickedPos);
+                    //Debug.Log("final pos: " + Input.mousePosition.x);
+
+                    //do things with final knob value
+                    //Debug.Log("knob value set to " + currentValue);
+                    value = currentValue;
+
+                    clicked = false;
+                    functionEnable = false;
+                    StartCoroutine(ResetFunctionality());
+                }
             }
         }
 
-        if(clicked)
+        if (!functionEnable)
         {
-            //rotate and fun things
-            //Debug.Log("difference: " + (Input.mousePosition.x - clickedPos.x));
-            int currentValue = currentDragValue(startValue);
-            TurnKnob(currentValue);
-
-
-            if (Input.GetMouseButtonUp(0))
-            {
-                //Debug.Log("initial pos: " + clickedPos);
-                //Debug.Log("final pos: " + Input.mousePosition.x);
-
-                //do things with final knob value
-                //Debug.Log("knob value set to " + currentValue);
-                value = currentValue;
-
-                clicked = false;
-            }
+            if(Mathf.Abs(value - startValue) == 2)
+                line.transform.localPosition = Vector2.MoveTowards(line.transform.localPosition, new Vector2(lineXPos[value], line.transform.localPosition.y), 400F * Time.deltaTime);
+            else
+                line.transform.localPosition = Vector2.MoveTowards(line.transform.localPosition, new Vector2(lineXPos[value], line.transform.localPosition.y), 200F * Time.deltaTime);
         }
     }
 
@@ -128,5 +155,22 @@ public class Knob : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public void OnPointerExit(PointerEventData eventData)
     {
         hover = false;
+    }
+
+    IEnumerator ResetFunctionality()
+    {
+        Debug.Log("knob disabled");
+        line.GetComponent<Animator>().enabled = false;
+
+        yield return new WaitForSeconds(0.5F);
+        GetComponent<WorldChanger>().setWorld(value);
+        AudioManager.inst?.PlayStatic(value);
+
+        yield return new WaitForSeconds(0.5F);
+        line.GetComponent<Animator>().enabled = true;
+        line.GetComponent<Animator>().SetTrigger(value.ToString());
+
+        functionEnable = true;
+        Debug.Log("knob enabled");
     }
 }

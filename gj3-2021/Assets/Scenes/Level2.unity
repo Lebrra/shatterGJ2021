@@ -611,6 +611,54 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 186701675, guid: 5b23d2a45094a444fb7dafde29ee6e59, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 186701675, guid: 5b23d2a45094a444fb7dafde29ee6e59, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 186701675, guid: 5b23d2a45094a444fb7dafde29ee6e59, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1244067623, guid: 5b23d2a45094a444fb7dafde29ee6e59, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1244067623, guid: 5b23d2a45094a444fb7dafde29ee6e59, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1992768100, guid: 5b23d2a45094a444fb7dafde29ee6e59, type: 3}
+      propertyPath: redWorldObjects.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1992768100, guid: 5b23d2a45094a444fb7dafde29ee6e59, type: 3}
+      propertyPath: blueWorldObjects.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1992768100, guid: 5b23d2a45094a444fb7dafde29ee6e59, type: 3}
+      propertyPath: greenWorldObjects.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1992768100, guid: 5b23d2a45094a444fb7dafde29ee6e59, type: 3}
+      propertyPath: redWorldObjects.Array.data[0]
+      value: 
+      objectReference: {fileID: 176545668}
+    - target: {fileID: 1992768100, guid: 5b23d2a45094a444fb7dafde29ee6e59, type: 3}
+      propertyPath: blueWorldObjects.Array.data[0]
+      value: 
+      objectReference: {fileID: 1530619957}
+    - target: {fileID: 1992768100, guid: 5b23d2a45094a444fb7dafde29ee6e59, type: 3}
+      propertyPath: greenWorldObjects.Array.data[0]
+      value: 
+      objectReference: {fileID: 1539664429}
+    - target: {fileID: 1992768100, guid: 5b23d2a45094a444fb7dafde29ee6e59, type: 3}
+      propertyPath: startIndex
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2743348214363933363, guid: 5b23d2a45094a444fb7dafde29ee6e59, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
