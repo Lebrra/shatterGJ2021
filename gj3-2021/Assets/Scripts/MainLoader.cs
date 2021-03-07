@@ -30,15 +30,11 @@ public class MainLoader : MonoBehaviour
         LoadLevelButtons(data);
     }
 
-    private void Update()
+    public void ResetGameData()
     {
-        //temp data reset
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            Debug.Log("reset gamedata, reloading...");
-            SaveSystem.SaveGame(new GameData(levelBtns.Length));
-            GameManager.instance.BackToMain();
-        }
+        Debug.Log("reset gamedata, reloading...");
+        SaveSystem.SaveGame(new GameData(levelBtns.Length));
+        GameManager.instance.BackToMain();
     }
 
     public void LoadLevelButtons(GameData data)
