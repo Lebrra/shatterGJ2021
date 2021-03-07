@@ -4,22 +4,34 @@ using UnityEngine;
 
 public class CollideDamage : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public enum type
     {
-        
+        pitFall,
+        spike,
+        shock
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public type myType;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+
+            switch (myType)
+            {
+                case type.pitFall:
+                    PlayerSound.inst.PlayFall();
+                    break;
+                case type.spike:
+                    PlayerSound.inst.PlayHit();
+                    break;
+                case type.shock:
+                    PlayerSound.inst.PlayShock();
+                    break;
+                default:
+                    break;
+            }
             LevelManager.inst.EndLevel(false);
             collision.gameObject.GetComponent<CharacterMovement>().stopMovement();
         }

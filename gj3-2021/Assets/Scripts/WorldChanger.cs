@@ -41,15 +41,27 @@ public class WorldChanger : MonoBehaviour
         switch (index)
         {
             case 0:
-                foreach (GameObject go in blueWorldObjects) go.SetActive(enabled);
+                foreach (GameObject go in blueWorldObjects)
+                {
+                    go.GetComponent<Collider2D>().enabled = enabled;
+                    foreach (Collider2D collider in go.GetComponentsInChildren<Collider2D>()) collider.enabled = enabled;
+                }
                 break;
 
             case 1:
-                foreach (GameObject go in redWorldObjects) go.SetActive(enabled);
+                foreach (GameObject go in redWorldObjects)
+                {
+                    go.GetComponent<Collider2D>().enabled = enabled;
+                    foreach (Collider2D collider in go.GetComponentsInChildren<Collider2D>()) collider.enabled = enabled;
+                }
                 break;
 
             case 2:
-                foreach (GameObject go in greenWorldObjects) go.SetActive(enabled);
+                foreach (GameObject go in greenWorldObjects)
+                {
+                    go.GetComponent<Collider2D>().enabled = enabled;
+                    foreach (Collider2D collider in go.GetComponentsInChildren<Collider2D>()) collider.enabled = enabled;
+                }
                 break;
 
             default: return;

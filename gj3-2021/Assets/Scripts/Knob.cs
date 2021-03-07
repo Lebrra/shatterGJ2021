@@ -15,6 +15,10 @@ public class Knob : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public bool clicked = false;
     Vector2 clickedPos;
 
+    public Material phaseMaterial;
+    string[] propertyNames = { "BluePhase", "RedPhase", "GreenPhase" };
+    float incrementer = 0;
+
     float initialPos;
     Vector2 dragWidth;
 
@@ -39,6 +43,12 @@ public class Knob : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         TurnKnob(value);
         line.GetComponent<Animator>().SetTrigger(value.ToString());
         GetComponent<WorldChanger>().setWorld(value);
+
+        for (int i = 0; i < 3; i++)
+        {
+            if (i == value) phaseMaterial.SetFloat(propertyNames[i], 0);
+            else phaseMaterial.SetFloat(propertyNames[i], 1);
+        }
     }
 
     void Update()
@@ -74,6 +84,7 @@ public class Knob : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
                     clicked = false;
                     functionEnable = false;
+                    incrementer = 0;
                     StartCoroutine(ResetFunctionality());
                 }
             }
@@ -85,6 +96,18 @@ public class Knob : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 line.transform.localPosition = Vector2.MoveTowards(line.transform.localPosition, new Vector2(lineXPos[value], line.transform.localPosition.y), 400F * Time.deltaTime);
             else
                 line.transform.localPosition = Vector2.MoveTowards(line.transform.localPosition, new Vector2(lineXPos[value], line.transform.localPosition.y), 200F * Time.deltaTime);
+            
+            incrementer += Time.deltaTime;
+            for(int i = 0; i < 3; i++)
+            {
+                if(incrementer > 1)
+                {
+                    if (i == value) phaseMaterial.SetFloat(propertyNames[i], 0);
+                    else phaseMaterial.SetFloat(propertyNames[i], 1);
+                }
+                else if (i == value) phaseMaterial.SetFloat(propertyNames[i], 1 - incrementer);
+                else if(i == startValue) phaseMaterial.SetFloat(propertyNames[i], incrementer);
+            }
         }
     }
 
