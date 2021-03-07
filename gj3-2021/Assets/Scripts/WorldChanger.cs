@@ -43,7 +43,7 @@ public class WorldChanger : MonoBehaviour
             case 0:
                 foreach (GameObject go in blueWorldObjects)
                 {
-                    go.GetComponent<Collider2D>().enabled = enabled;
+                    if (go.GetComponent<Collider2D>()) go.GetComponent<Collider2D>().enabled = enabled;
                     foreach (Collider2D collider in go.GetComponentsInChildren<Collider2D>()) collider.enabled = enabled;
                 }
                 break;
@@ -51,7 +51,7 @@ public class WorldChanger : MonoBehaviour
             case 1:
                 foreach (GameObject go in redWorldObjects)
                 {
-                    go.GetComponent<Collider2D>().enabled = enabled;
+                    if (go.GetComponent<Collider2D>()) go.GetComponent<Collider2D>().enabled = enabled;
                     foreach (Collider2D collider in go.GetComponentsInChildren<Collider2D>()) collider.enabled = enabled;
                 }
                 break;
@@ -59,7 +59,7 @@ public class WorldChanger : MonoBehaviour
             case 2:
                 foreach (GameObject go in greenWorldObjects)
                 {
-                    go.GetComponent<Collider2D>().enabled = enabled;
+                    if (go.GetComponent<Collider2D>()) go.GetComponent<Collider2D>().enabled = enabled;
                     foreach (Collider2D collider in go.GetComponentsInChildren<Collider2D>()) collider.enabled = enabled;
                 }
                 break;

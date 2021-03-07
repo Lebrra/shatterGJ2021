@@ -825,6 +825,7 @@ MonoBehaviour:
   functionEnable: 1
   value: 0
   clicked: 0
+  phaseMaterial: {fileID: 2100000, guid: edfd076bb41d4435c82827743754ad8e, type: 2}
   line: {fileID: 493219460}
   lineXPos:
   - -200
@@ -2598,11 +2599,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f0c11880bbfa4e76a58ac207d73940b, type: 3}
---- !u!224 &532354935889670791 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 2409735126984925044, guid: 2f0c11880bbfa4e76a58ac207d73940b, type: 3}
-  m_PrefabInstance: {fileID: 2743348215474990579}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &532354935889670790 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2409735126984925045, guid: 2f0c11880bbfa4e76a58ac207d73940b, type: 3}
@@ -2614,3 +2610,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 884686430a7204fbdac1d83db20ceecf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &532354935889670791 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 2409735126984925044, guid: 2f0c11880bbfa4e76a58ac207d73940b, type: 3}
+  m_PrefabInstance: {fileID: 2743348215474990579}
+  m_PrefabAsset: {fileID: 0}
