@@ -298,7 +298,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -200, y: 109.62}
+  m_AnchoredPosition: {x: 196, y: 109.62}
   m_SizeDelta: {x: 10, y: 103.279816}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &493219463
@@ -748,7 +748,7 @@ GameObject:
   - component: {fileID: 1992768096}
   - component: {fileID: 1992768098}
   - component: {fileID: 1992768097}
-  - component: {fileID: 1992768099}
+  - component: {fileID: 3376377803202632958}
   - component: {fileID: 1992768100}
   m_Layer: 5
   m_Name: WorldKnob
@@ -814,7 +814,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &1992768099
+--- !u!114 &3376377803202632958
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -823,18 +823,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 1992768095}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06bc0736b4e912742956cc4effeb9edc, type: 3}
+  m_Script: {fileID: 11500000, guid: 239924ffb44344dcc87f837df7a7e6e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  functionEnable: 1
-  value: 0
-  clicked: 0
   phaseMaterial: {fileID: 2100000, guid: edfd076bb41d4435c82827743754ad8e, type: 2}
-  line: {fileID: 493219460}
-  lineXPos:
-  - -200
-  - -8
-  - 195
+  materialPropertyName: Phase
+  lineAnimator: {fileID: 493219464}
+  disabledKnobColor: {r: 0.5882353, g: 0.5882353, b: 0.5882353, a: 1}
+  currentWorld: 2
+  snapAngles:
+  - 60
+  - 0
+  - -60
+  worldColors:
+  - {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  - {r: 0, g: 1, b: 1, a: 1}
+  - {r: 1, g: 0, b: 1, a: 1}
 --- !u!114 &1992768100
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -847,7 +851,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b999fd9bcf675014696e0eb9feeb673e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startIndex: 0
   worldIndex: 0
   blueWorldObjects: []
   redWorldObjects: []

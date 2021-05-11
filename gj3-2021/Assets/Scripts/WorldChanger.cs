@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WorldChanger : MonoBehaviour
 {
-    public int startIndex;
+    //public int startIndex;
     public int worldIndex;
 
     public List<GameObject> blueWorldObjects;
@@ -17,7 +17,7 @@ public class WorldChanger : MonoBehaviour
     private void Start()
     {
         //GetComponent<UnityEngine.UI.Slider>().value = startIndex;
-        GetComponent<Knob>().setInitialValue(startIndex);
+        //GetComponent<Knob>().setInitialValue(startIndex);
         //setWorld(0);
     }
 

@@ -1,11 +1,37 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
+[RequireComponent(typeof(Image))]
+[RequireComponent(typeof(WorldChanger))]
 public class KnobUsingCursorAngle : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     private float offsetAngle;
-    [SerializeField] private float[] snaps = new float[] { -60, 0, 60 };
+    private Image image;
+    private WorldChanger worldChanger;
+    [SerializeField] private Material phaseMaterial = null;
+    [SerializeField] private string materialPropertyName = "Phase";
+    [SerializeField] private Animator lineAnimator = null;
+    [SerializeField] private Color disabledKnobColor = new Color32(150, 150, 150, 255);
+    [SerializeField] private int currentWorld = 2;
+    [SerializeField] private float[] snapAngles = new float[] { 60, 0, -60 };
+    [SerializeField] private Color[] worldColors = new Color[] { Color.yellow, Color.cyan, Color.magenta };
+
+    void Start()
+    {
+        image = GetComponent<Image>();
+        worldChanger = GetComponent<WorldChanger>();
+        Initialize();
+    }
+
+    private void Initialize()
+    {
+        transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, snapAngles[currentWorld]);
+        lineAnimator.SetTrigger(currentWorld.ToString());
+        phaseMaterial.SetColor(materialPropertyName, worldColors[currentWorld]);
+        worldChanger.setWorld(currentWorld);
+    }
 
     public float CursorAngle()
     {
@@ -25,20 +51,13 @@ public class KnobUsingCursorAngle : MonoBehaviour, IBeginDragHandler, IDragHandl
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        int nearestIndex = 0;
-        float minimumAngle = Mathf.Abs(Mathf.DeltaAngle(transform.eulerAngles.z, snaps[0]));
-
-        for(int i = 1; i < snaps.Length; i++)
+        int nearestIndex = snapAngles.MinIndex(angle => Mathf.Abs(Mathf.DeltaAngle(transform.eulerAngles.z, angle)));
+        StartCoroutine(RotateToAngle(snapAngles[nearestIndex]));
+        if(nearestIndex != currentWorld)
         {
-            float angle = Mathf.Abs(Mathf.DeltaAngle(transform.eulerAngles.z, snaps[i]));
-            if(angle < minimumAngle)
-            {
-                nearestIndex = i;
-                minimumAngle = angle;
-            }
+            currentWorld = nearestIndex;
+            StartCoroutine(PhaseShift(currentWorld));
         }
-
-        StartCoroutine(RotateToAngle(snaps[nearestIndex]));
     }
 
     private IEnumerator RotateToAngle(float target)
@@ -52,5 +71,33 @@ public class KnobUsingCursorAngle : MonoBehaviour, IBeginDragHandler, IDragHandl
         }
 
         transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, target);
+    }
+
+    private IEnumerator PhaseShift(int world)
+    {
+        enabled = false;
+        image.color = disabledKnobColor;
+        AudioManager.inst.PlayStatic(world);
+        lineAnimator.SetTrigger(world.ToString());
+        Color start = phaseMaterial.GetColor(materialPropertyName);
+        Color end = worldColors[world];
+
+        yield return LerpPhaseColor(start, end, 0, 0.5f);
+        worldChanger.setWorld(world);
+        image.color = Color.white;
+        enabled = true;
+
+        yield return LerpPhaseColor(start, end, 0.5f, 1f);
+    }
+
+    private IEnumerator LerpPhaseColor(Color start, Color end, float tStart, float tEnd)
+    {
+        for(float t = tStart; t < tEnd; t += Time.deltaTime)
+        {
+            phaseMaterial.SetColor(materialPropertyName, Color.Lerp(start, end, t));
+            yield return null;
+        }
+
+        phaseMaterial.SetColor(materialPropertyName, Color.Lerp(start, end, tEnd));
     }
 }
